@@ -54,3 +54,18 @@ def seed_characters
 end
 
 seed_characters
+
+def access_events
+  response = RestClient.get("https://api.got.show/api/events/")
+  JSON.parse(response.body)
+end
+
+def seed_events
+  Event.destroy_all
+  access_events.each do |event_hash|
+    Event.create(date: event_hash["date"],
+                  name: event_hash["name"])
+  end
+end
+
+seed_events
