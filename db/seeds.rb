@@ -28,9 +28,29 @@ def seed_houses
       House.create(region_id: region_id,
                   name: house_hash["name"],
                   coat_of_arms: house_hash["coatOfArms"],
-                  ancestral_weapon: house_hash["ancestralWeapon"])
+                  ancestral_weapon: house_hash["ancestralWeapon"].first)
     end
   end
 end
 
 seed_houses
+
+def access_characters
+  response = RestClient.get("https://api.got.show/api/characters/")
+  JSON.parse(response.body)
+end
+
+def seed_characters
+  Character.destroy_all
+  access_characters.each do |character_hash|
+    house_id = House.find_by(name: character_hash["house"])&.id
+    if house_id
+      Character.create(house_id: house_id,
+                        name: character_hash["name"],
+                        title: character_hash["titles"].first,
+                        culture: character_hash["culture"])
+    end
+  end
+end
+
+seed_characters
