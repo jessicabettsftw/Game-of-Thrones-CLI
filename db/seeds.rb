@@ -63,8 +63,10 @@ end
 def seed_events
   Event.destroy_all
   access_events.each do |event_hash|
-    Event.create(date: event_hash["date"],
-                  name: event_hash["name"])
+    if !event_hash["name"].include?("Unnamed") #get's rid of unnamed events from the wonderfully populated API
+      Event.create(date: event_hash["date"],
+                    name: event_hash["name"])
+    end
   end
 end
 
