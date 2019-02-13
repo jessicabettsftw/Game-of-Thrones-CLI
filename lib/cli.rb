@@ -71,15 +71,16 @@ class CLI
         end
       end
     when "2" #finding by name
+      name = gets.chomp
       case choice
       when "1" #find character
-        Character.find_by(name: house_hash["region"])
-      when "2", "1" #list of Houses
-
-      when "2", "2" #find Houses by name
-
-      when "3", "1" #list of Regions
-
+        puts Character.find_by(name:  name)
+      when "2" #find House
+        puts House.find_by(name:  name)
+      when "3" #find Region
+        puts Region.find_by(name:  name)
+      when "4" #find Event
+        puts Event.find_by(name:  name)
       end
     end
   end
