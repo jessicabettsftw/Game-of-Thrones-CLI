@@ -1,5 +1,6 @@
-{
-  "Ned Stark's Execution" : {
+[
+  {
+    "name": "Ned Stark's Execution",
     "region" : "Crownlands",
     "characters" : [
       "Arya Stark",
@@ -8,9 +9,10 @@
       "Cersei Lannister",
       "Sansa Stark",
       "Pycelle"
-    ],
+    ]
   },
-  "Theon Takes Winterfell" : {
+  {
+    "name" : "Theon Takes Winterfell",
     "region" : "North",
     "characters" : [
       "Theon Greyjoy",
@@ -23,7 +25,8 @@
       "Hodor"
     ]
   },
-  "Battle of Blackwater" : {
+  {
+    "name" : "Battle of Blackwater",
     "region" : "Crownlands",
     "characters" : [
       "Stannis Baratheon",
@@ -38,7 +41,8 @@
       "Sansa Stark"
     ]
   },
-  "Tyrion's trial" : {
+  {
+    "name" :"Tyrion's trial",
     "region" : "Crownlands",
     "characters" : [
       "Meryn Trant",
@@ -54,7 +58,9 @@
       "Margaery Tyrell"
     ]
   },
-  "The Red Wedding" : {
+  {
+    "name" : "The Red Wedding",
+    "region" : "Riverlands",
     "characters":
     [
       "Brynden Tully",
@@ -65,20 +71,22 @@
       "Edmure Tully",
       "Walder Frey (son of Ryman)",
       "Tywin Lannister"
-    ],
-    "region" : "Riverlands"
+    ]
   },
-  "The Battle of Castle Black" : {
+  {
+    "name" : "The Battle of Castle Black",
+    "region" : "Riverlands",
     "characters":
     [
     "Jon Snow",
     "Allister Thorne",
     "Eddison Tollett",
     "Stannis Baratheon"
-    ],
-    "region" : "The North"
+    ]
   },
-  "The Purple Wedding" : {
+  {
+    "name" : "The Purple Wedding",
+    "region" : "Crownlands",
     "characters":
     [
       "Joffrey Baratheon",
@@ -90,10 +98,11 @@
       "Cersei Lannister"
       "Pycelle",
       "Jaime Lannister"
-    ],
-    "region" : "Crownlands"
+    ]
   },
-  "Battle of the Bastards" : {
+  {
+    "name" : "Battle of the Bastards",
+    "region" : "The North",
     "characters":
     [
       "Jon Snow",
@@ -103,7 +112,6 @@
       "Jon Umber (Smalljon)",
       "Rickon Stark"
       "Alys Karstark"
-    ],
-    "region" : "The North"
+    ]
   }
-}
+]
