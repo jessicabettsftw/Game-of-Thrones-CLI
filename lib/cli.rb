@@ -41,7 +41,7 @@ class CLI
   end
 
   def sub_prompt(class_name)
-    puts "Enter a number or exit"
+    puts "Enter a number"
     puts "1. List all #{class_name}"
     puts "2. Get #{class_name} by name"
     gets.chomp.downcase
@@ -75,28 +75,46 @@ class CLI
       case choice
       when "1" #find character
         character = Character.find_by(name:  name)
-        puts "#{character.name}"
-        puts "Title: #{character.title}"
-        puts "House:"
-        puts "Culture: #{character.culture}"
-        puts "Id: #{character.id}"
+        if character
+          puts "#{character.name}"
+          puts "Title: #{character.title}"
+          puts "House:"
+          puts "Culture: #{character.culture}"
+          puts "Id: #{character.id}"
+        else
+          puts "That character doesn't exist!"
+        end
       when "2" #find House
         house = House.find_by(name:  name)
-        puts "#{house.name}"
-        puts "Region:"
-        puts "Coat of Arms: #{house.coat_of_arms}"
-        puts "Ancestral Weapon: #{house.ancestral_weapon}"
-        puts "Id: #{house.id}"
+        if house
+          puts "#{house.name}"
+          puts "Region:"
+          puts "Coat of Arms: #{house.coat_of_arms}"
+          puts "Ancestral Weapon: #{house.ancestral_weapon}"
+          puts "Id: #{house.id}"
+        else
+          puts "That house doesn't exist!"
+        end
       when "3" #find Region
         region = Region.find_by(name:  name)
-        puts "#{region.name}"
-        puts "Id: #{region.id}"
+        if region
+          puts "#{region.name}"
+          puts "Id: #{region.id}"
+        else
+          puts "That region doesn't exist"
+        end
       when "4" #find Event
         event = Event.find_by(name:  name)
-        puts "#{event.name}"
-        puts "Date: #{event.date}"
-        puts "Id: #{event.id}"
+        if event
+          puts "#{event.name}"
+          puts "Date: #{event.date}"
+          puts "Id: #{event.id}"
+        else
+          puts "That event doesn't exist!"
+        end
       end
+    else
+      puts "Invalid choice! SHAME!!! *rings bell*"
     end
   end
 
