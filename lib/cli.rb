@@ -74,13 +74,28 @@ class CLI
       name = gets.chomp
       case choice
       when "1" #find character
-        puts Character.find_by(name:  name)
+        character = Character.find_by(name:  name)
+        puts "#{character.name}"
+        puts "Title: #{character.title}"
+        puts "House:"
+        puts "Culture: #{character.culture}"
+        puts "Id: #{character.id}"
       when "2" #find House
-        puts House.find_by(name:  name)
+        house = House.find_by(name:  name)
+        puts "#{house.name}"
+        puts "Region:"
+        puts "Coat of Arms: #{house.coat_of_arms}"
+        puts "Ancestral Weapon: #{house.ancestral_weapon}"
+        puts "Id: #{house.id}"
       when "3" #find Region
-        puts Region.find_by(name:  name)
+        region = Region.find_by(name:  name)
+        puts "#{region.name}"
+        puts "Id: #{region.id}"
       when "4" #find Event
-        puts Event.find_by(name:  name)
+        event = Event.find_by(name:  name)
+        puts "#{event.name}"
+        puts "Date: #{event.date}"
+        puts "Id: #{event.id}"
       end
     end
   end
