@@ -56,18 +56,27 @@ end
 seed_characters
 
 def access_events
-  response = RestClient.get("https://api.got.show/api/events/")
-  JSON.parse(response.body)
+  JSON.parse(../json_seed_info/character_events.json)
 end
 
 def seed_events
   Event.destroy_all
   access_events.each do |event_hash|
-    if !event_hash["name"].include?("Unnamed") #get's rid of unnamed events from the wonderfully populated API
-      Event.create(date: event_hash["date"],
-                    name: event_hash["name"])
-    end
+    Event.create(region: event_hash["region"],
+                name: event_hash["name"])
+    seed_character_event(event_hash["characters"])
+    #for each character in the array find character_id, create characterEvents
   end
 end
 
+def seed_character_event()
+
+end
+
 seed_events
+
+
+
+
+
+#############################
