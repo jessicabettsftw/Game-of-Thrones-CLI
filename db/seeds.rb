@@ -56,7 +56,7 @@ end
 seed_characters
 
 def access_events
-  JSON.parse(../json_seed_info/character_events.json)
+  JSON.parse(File.read("./json_seed_info/character_events.json"))
 end
 
 def seed_events
