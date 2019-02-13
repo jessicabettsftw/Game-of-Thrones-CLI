@@ -12,13 +12,16 @@ class CLI
       case choice
       when "1"
         user_input = sub_prompt("Characters")
-
+        list_or_find(choice, user_input)
       when "2"
-        sub_prompt("Houses")
+        user_input = sub_prompt("Houses")
+        list_or_find(choice, user_input)
       when "3"
-        sub_prompt("Regions")
+        user_input = sub_prompt("Regions")
+        list_or_find(choice, user_input)
       when "4"
-        sub_prompt("Events")
+        user_input = sub_prompt("Events")
+        list_or_find(choice, user_input)
       when "exit"
         break
       else
@@ -45,12 +48,14 @@ class CLI
   end
 
   def list_or_find(choice, user_input)
+    #puts "#{choice} and #{user_input}"
     case user_input
-    when "1", #listing
+    when "1" #listing
+      puts "1"
       case choice
       when "1"
         Character.all.each_with_index do |character, index|
-          puts "#{index}. #{character.name}"
+          puts "#{index}. #{character.name}\n"
         end
       when "2"
         House.all.each_with_index do |house, index|
@@ -67,7 +72,7 @@ class CLI
       end
     when "2" #finding by name
       case choice
-      when "1", #find character
+      when "1" #find character
         Character.find_by(name: house_hash["region"])
       when "2", "1" #list of Houses
 
