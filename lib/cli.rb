@@ -76,7 +76,7 @@ class CLI
       when "1" #find character
         character = Character.find_by(name:  name)
         if character
-          puts "Name: #{name}"
+          puts "Name: #{character.name}"
           puts "Title: #{character.title}"
           puts "House: #{character.house.name}"
           puts "Culture: #{character.culture}"
