@@ -1,0 +1,109 @@
+{
+  "Ned Stark's Execution" : {
+    "region" : "Crownlands",
+    "characters" : [
+      "Arya Stark",
+      "Eddard Stark",
+      "Joffrey Baratheon",
+      "Cersei Lannister",
+      "Sansa Stark",
+      "Pycelle"
+    ],
+  },
+  "Theon Takes Winterfell" : {
+    "region" : "North",
+    "characters" : [
+      "Theon Greyjoy",
+      "Barn Stark",
+      "Luwin",
+      "Farlen",
+      "Rodrik Cassel",
+      "Osha",
+      "Dagmer",
+      "Hodor"
+    ]
+  },
+  "Battle of Blackwater" : {
+    "region" : "Crownlands",
+    "characters" : [
+      "Stannis Baratheon",
+      "Tyrion Lannister",
+      "Bronn",
+      "Joffrey Baratheon",
+      "Cersei Lannister",
+      "Mandon Moore",
+      "Boros Blount",
+      "Tywin Lannister",
+      "Loras Tyrell",
+      "Sansa Stark"
+    ]
+  },
+  "Tyrion's trial" : {
+    "region" : "Crownlands",
+    "characters" : [
+      "Meryn Trant",
+      "Joffrey Baratheon",
+      "Tywin Lannister",
+      "Cersei Lannister",
+      "Tyrion Lannister",
+      "Jaime Lannister",
+      "Sansa Stark",
+      "Mace Tyrell",
+      "Oberyn Martell",
+      "Pycelle",
+      "Margaery Tyrell"
+    ]
+  },
+  "The Red Wedding" : {
+    "characters":
+    [
+      "Brynden Tully",
+      "Joyeuse Erenford",
+      "Robb Stark",
+      "Catelyn Stark",
+      "Wendel Manderly",
+      "Edmure Tully",
+      "Walder Frey (son of Ryman)",
+      "Tywin Lannister"
+    ],
+    "region" : "Riverlands"
+  },
+  "The Battle of Castle Black" : {
+    "characters":
+    [
+    "Jon Snow",
+    "Allister Thorne",
+    "Eddison Tollett",
+    "Stannis Baratheon"
+    ],
+    "region" : "The North"
+  },
+  "The Purple Wedding" : {
+    "characters":
+    [
+      "Joffrey Baratheon",
+      "Margaery Tyrell",
+      "Tyrion Lannister",
+      "Sansa Stark",
+      "Olenna Redwyne",
+      "Dontos Hollard",
+      "Cersei Lannister"
+      "Pycelle",
+      "Jaime Lannister"
+    ],
+    "region" : "Crownlands"
+  },
+  "Battle of the Bastards" : {
+    "characters":
+    [
+      "Jon Snow",
+      "Lyanna Mormont",
+      "Sansa Stark",
+      "Yohn Royce",
+      "Jon Umber (Smalljon)",
+      "Rickon Stark"
+      "Alys Karstark"
+    ],
+    "region" : "The North"
+  }
+}
