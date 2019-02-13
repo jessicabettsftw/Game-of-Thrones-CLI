@@ -62,14 +62,15 @@ end
 def seed_events
   Event.destroy_all
   access_events.each do |event_hash|
-    Event.create(region: event_hash["region"],
+    region_id = Region.find_by(name: event_hash["region"])&.id
+    Event.create(region_id: region_id,
                 name: event_hash["name"])
     seed_character_event(event_hash["characters"])
     #for each character in the array find character_id, create characterEvents
   end
 end
 
-def seed_character_event()
+def seed_character_event(fluff)
 
 end
 
