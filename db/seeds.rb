@@ -61,6 +61,7 @@ end
 
 def seed_events
   Event.destroy_all
+  CharacterEvent.destroy_all
   access_events.each do |event_hash|
     region_id = Region.find_by(name: event_hash["region"])&.id
     new_event = Event.create(region_id: region_id,
@@ -70,8 +71,11 @@ def seed_events
   end
 end
 
-def seed_character_event(characters, event_id)
-  
+def seed_character_event(character_names, event_id)
+  character_names.each do |char_name|
+    char_id = Character.find_by(name: char_name)&.id
+    CharacterEvent.create(character_id: char_id, event_id: event_id)
+  end
 end
 
 seed_events
