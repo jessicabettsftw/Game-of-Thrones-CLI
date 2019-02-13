@@ -78,7 +78,7 @@ class CLI
         if character
           puts "#{character.name}"
           puts "Title: #{character.title}"
-          puts "House:"
+          puts "House: #{character.house.name}"
           puts "Culture: #{character.culture}"
           puts "Id: #{character.id}"
         else
@@ -88,7 +88,7 @@ class CLI
         house = House.find_by(name:  name)
         if house
           puts "#{house.name}"
-          puts "Region: "
+          puts "Region: #{house.region.name}"
           puts "Coat of Arms: #{house.coat_of_arms}"
           puts "Ancestral Weapon: #{house.ancestral_weapon}"
           puts "Id: #{house.id}"
