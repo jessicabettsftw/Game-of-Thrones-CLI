@@ -88,7 +88,7 @@ class CLI
         house = House.find_by(name:  name)
         if house
           puts "#{house.name}"
-          puts "Region:"
+          puts "Region: "
           puts "Coat of Arms: #{house.coat_of_arms}"
           puts "Ancestral Weapon: #{house.ancestral_weapon}"
           puts "Id: #{house.id}"
