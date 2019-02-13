@@ -76,7 +76,6 @@ class CLI
       when "1" #find character
         character = Character.find_by(name:  name)
         if character
-          puts "Name: #{character.name}"
           puts "Title: #{character.title}"
           puts "House: #{character.house.name}"
           puts "Culture: #{character.culture}"
@@ -87,7 +86,6 @@ class CLI
       when "2" #find House
         house = House.find_by(name:  name)
         if house
-          puts "#{house.name}"
           puts "Region: #{house.region.name}"
           puts "Coat of Arms: #{house.coat_of_arms}"
           puts "Ancestral Weapon: #{house.ancestral_weapon}"
@@ -98,7 +96,6 @@ class CLI
       when "3" #find Region
         region = Region.find_by(name:  name)
         if region
-          puts "#{region.name}"
           puts "Id: #{region.id}"
         else
           puts "That region doesn't exist"
@@ -106,7 +103,6 @@ class CLI
       when "4" #find Event
         event = Event.find_by(name:  name)
         if event
-          puts "#{event.name}"
           puts "Date: #{event.date}"
           puts "Id: #{event.id}"
         else

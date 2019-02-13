@@ -24,7 +24,7 @@ def seed_houses
   House.destroy_all
   access_houses.each do |house_hash|
     region_id = Region.find_by(name: house_hash["region"])&.id #in case region doesn't exist
-    if region_id
+    if region_id && house_hash["coatOfArms"]
       House.create(region_id: region_id,
                   name: house_hash["name"],
                   coat_of_arms: house_hash["coatOfArms"],
