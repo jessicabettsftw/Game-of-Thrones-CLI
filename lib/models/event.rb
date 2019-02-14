@@ -7,7 +7,13 @@ class Event < ActiveRecord::Base
     print "Name an event to go to: "
     input = gets.chomp.strip
     event = self.find_by(name: input)
-    event&.print_messages || "That event does not exist!"
+    if event
+      event.print_messages
+      CharacterEvent.create(character_id: character.id,
+                            event_id: event.id)
+    else
+      puts "That event doesn't exist!!!"
+    end
   end
 
   def print_messages
