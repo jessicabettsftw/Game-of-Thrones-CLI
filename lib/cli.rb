@@ -80,6 +80,7 @@ class CLI
           puts "House: #{character.house.name}"
           puts "Culture: #{character.culture}"
           puts "Id: #{character.id}"
+          puts "Events attended: #{character.events.to_s}"
         else
           puts "That character doesn't exist!"
         end
