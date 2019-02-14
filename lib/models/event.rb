@@ -3,6 +3,13 @@ class Event < ActiveRecord::Base
   has_many :characters, through: :character_events
   belongs_to :region
 
+  def self.attend(character)
+    print "Name an event to go to: "
+    input = gets.chomp.strip
+    event = self.find_by(name: input)
+    event&.print_messages || "That event does not exist!"
+  end
+
   def print_messages
     puts "Region: #{self.region.name}"
     puts "Id: #{self.id}"

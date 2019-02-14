@@ -24,6 +24,7 @@ class Character < ActiveRecord::Base
     character = self.find_by(name:  name)
     if character
       character.print_messages
+      return character
     else
       puts "That character doesn't exist!"
     end
