@@ -7,7 +7,7 @@ task :console do
     response = RestClient.get("https://api.got.show/api/characters/")
     JSON.parse(response.body)
   end
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  ActiveRecord::Base.logger = nil
   Pry.start
 end
 

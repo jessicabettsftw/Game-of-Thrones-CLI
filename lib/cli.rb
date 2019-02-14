@@ -1,9 +1,10 @@
 class CLI
   def initialize()
-    puts "Peter Dinklage"
+
   end
 
   def main()
+    puts
     puts "Game of Thrones API:"
     puts
     #loop
@@ -23,9 +24,6 @@ class CLI
         user_input = sub_prompt("Events")
         list_or_find(choice, user_input)
       when "exit"
-        puts "do you want to save (y/n)"
-        save = gets.chomp
-        system("rake db:drop") if save == "n"
         break
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
@@ -57,53 +55,25 @@ class CLI
       puts "1"
       case choice
       when "1"
-        Character.all.each_with_index do |character, index|
-          puts "#{index}. #{character.name}\n"
-        end
+        Character.list_all
       when "2"
-        House.all.each_with_index do |house, index|
-          puts "#{index}. #{house.name}"
-        end
+        House.list_all
       when "3"
-        Region.all.each_with_index do |region, index|
-          puts "#{index}. #{region.name}"
-        end
+        Region.list_all
       when "4"
-        Event.all.each_with_index do |event, index|
-          puts "#{index}. #{event.name}"
-        end
+        Event.list_all
       end
     when "2" #finding by name
       name = gets.chomp
       case choice
       when "1" #find character
-        character = Character.find_by(name:  name)
-        if character
-          character.print_messages
-        else
-          puts "That character doesn't exist!"
-        end
+        Character.exists?(name)
       when "2" #find House
-        house = House.find_by(name:  name)
-        if house
-          house.print_messages
-        else
-          puts "That house doesn't exist!"
-        end
+        House.exists?(name)
       when "3" #find Region
-        region = Region.find_by(name:  name)
-        if region
-          region.print_messages
-        else
-          puts "That region doesn't exist"
-        end
+        Region.exists?(name)
       when "4" #find Event
-        event = Event.find_by(name:  name)
-        if event
-          event.print_messages
-        else
-          puts "That event doesn't exist!"
-        end
+        Event.exists?(name)
       end
     else
       puts "Invalid choice! SHAME!!! *rings bell*"

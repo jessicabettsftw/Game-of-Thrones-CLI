@@ -7,6 +7,7 @@ def access_regions
 end
 
 def seed_regions
+  puts "- Seeding Region Data"
   Region.destroy_all
   access_regions.each do |region_hash|
     Region.create(name: region_hash["name"])
@@ -21,6 +22,7 @@ def access_houses
 end
 
 def seed_houses
+  puts "- Seeding House Data"
   House.destroy_all
   access_houses.each do |house_hash|
     region_id = Region.find_by(name: house_hash["region"])&.id #in case region doesn't exist
@@ -41,10 +43,11 @@ def access_characters
 end
 
 def seed_characters
+  puts "- Seeding Character Data"
   Character.destroy_all
   access_characters.each do |character_hash|
     house_id = House.find_by(name: character_hash["house"])&.id
-    if house_id 
+    if house_id
       Character.create(house_id: house_id,
                         name: character_hash["name"],
                         title: character_hash["titles"].first,
@@ -60,6 +63,7 @@ def access_events
 end
 
 def seed_events
+  puts "- Seeding Event Data"
   Event.destroy_all
   CharacterEvent.destroy_all
   access_events.each do |event_hash|
@@ -79,6 +83,8 @@ def seed_character_event(character_names, event_id)
 end
 
 seed_events
+
+
 
 
 
