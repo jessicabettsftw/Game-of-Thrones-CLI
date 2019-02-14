@@ -51,7 +51,8 @@ def seed_characters
       Character.create(house_id: house_id,
                         name: character_hash["name"],
                         title: character_hash["titles"].first,
-                        culture: character_hash["culture"])
+                        culture: character_hash["culture"],
+                        status: "alive")
     end
   end
 end

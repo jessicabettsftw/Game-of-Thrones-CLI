@@ -3,6 +3,12 @@ class Character < ActiveRecord::Base
   has_many :character_events
   has_many :events, through: :character_events
 
+  has_one :death, :class_name => "Murder", :foreign_key => "victim_id"
+  has_one :murderer, through: :death, source: :murderer
+
+  has_many :kills, :class_name => "Murder", :foreign_key => "murderer_id"
+  has_many :victims, through: :kills, source: :victim
+
   def print_messages
     puts "Title: #{self.title}"
     puts "House: #{self.house.name}"
