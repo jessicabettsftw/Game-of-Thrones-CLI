@@ -23,6 +23,9 @@ class CLI
         user_input = sub_prompt("Events")
         list_or_find(choice, user_input)
       when "exit"
+        puts "do you want to save (y/n)"
+        save = gets.chomp
+        system("rake db:drop") if save == "n"
         break
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
