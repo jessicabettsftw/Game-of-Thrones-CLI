@@ -91,9 +91,7 @@ end
 class CLI
 
   def choose_character
-    puts "Hi User, please choose a character to play as \n
-    type their name to choose them, or type 'list' to see 5o random characters
-    to chose from."
+    puts "type a characters name, or type 'list' to see 50 random available characters."
      input = gets.chomp.strip
 
      if input.downcase == "list"
@@ -105,8 +103,9 @@ class CLI
      end
   end
 
-  def main
+  def welcome
     puts "Welcome to the GOT CLI"
+    puts "Hi User, please choose a character to play as"
     character = nil
     loop do
       character = choose_character
@@ -114,5 +113,39 @@ class CLI
      end
      puts "You are playing as #{character.name}! Here is your information:"
      character.print_messages
+     character
+  end
+
+  def main
+    player_character = welcome
+
+    loop do
+      choice = prompt_user
+      case choice
+      when "help"
+        help
+      when "exit"
+        break
+      when "events"
+        Event.list_all
+      when "attend event"
+        Event.attend(player_character)
+      else
+        puts "Invalid choice! SHAME!!! *rings bell*"
+      end
+    end
+  end
+
+  private #main submethods
+
+  def help
+    puts "- exit"
+    puts "- events: lists all events in Westeros"
+    puts "- attend event: go to an event"
+  end
+
+  def prompt_user
+    puts "What would you like to do next (type 'help' for a list of commands)"
+    gets.chomp.strip
   end
 end
