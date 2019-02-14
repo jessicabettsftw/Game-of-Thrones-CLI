@@ -1,6 +1,6 @@
 class CLI
   def initialize()
-    puts "Peter Dinklage"
+    
   end
 
   def main()
