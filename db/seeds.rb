@@ -85,20 +85,6 @@ end
 seed_events
 
 
-takes super long but only way to get more than 10 char
-6:28 vs 2:10
-def access_books
-  i = 1
-  while i < 1400
-    response = RestClient.get("https://www.anapioficeandfire.com/api/characters/#{i}")
-    jsonFile = JSON.parse(response.body)
-    #puts jsonFile["name"]
-    i += 1
-  end
-end
-
-
-access_books
 
 
 

@@ -13,5 +13,20 @@ class Character < ActiveRecord::Base
 
   end
 
+  def self.list_all
+    puts
+    self.all.each_with_index do |character, index|
+      puts "#{index + 1}. #{character.name}\n"
+    end
+  end
+
+  def self.exists?(name)
+    character = self.find_by(name:  name)
+    if character
+      character.print_messages
+    else
+      puts "That character doesn't exist!"
+    end
+  end
 
 end
