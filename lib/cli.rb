@@ -1,9 +1,10 @@
 class CLI
   def initialize()
-    
+
   end
 
   def main()
+    puts 
     puts "Game of Thrones API:"
     puts
     #loop
