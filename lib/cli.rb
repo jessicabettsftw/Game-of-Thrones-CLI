@@ -1,4 +1,4 @@
-class CLI
+class XCLI
   def initialize()
 
   end
@@ -38,14 +38,14 @@ class CLI
     puts "2. Houses"
     puts "3. Regions"
     puts "4. Events"
-    gets.chomp.downcase
+    gets.chomp.downcase.strip
   end
 
   def sub_prompt(class_name)
     puts "Enter a number"
     puts "1. List all #{class_name}"
     puts "2. Get #{class_name} by name"
-    gets.chomp.downcase
+    gets.chomp.downcase.strip
   end
 
   def list_or_find(choice, user_input)
@@ -82,4 +82,30 @@ class CLI
 
 
 
+end
+
+#######################################
+#------------STAGE3 CLI --------------#
+#######################################
+
+class CLI
+
+  def choose_character
+    puts "Hi User, please choose a character to play as \n
+    type their name to choose them, or type 'list' to see 5o random characters
+     to chose from."
+     input = gets.chomp.strip
+
+     if input.downcase == "list"
+       Character.all.collect{|c| c.name}.sample(50)
+       return "redo"
+     else
+       Character.exists?(input)
+     end
+  end
+
+  def main
+    puts "Welcome to the GOT CLI"
+    while choose_character == "redo" do end
+  end
 end
