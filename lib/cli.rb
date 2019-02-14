@@ -107,8 +107,9 @@ class CLI
       when "4" #find Event
         event = Event.find_by(name:  name)
         if event
-          puts "Date: #{event.date}"
+          puts "Region: #{event.region.name}"
           puts "Id: #{event.id}"
+          puts "Attendees: #{event.characters.to_s}"
         else
           puts "That event doesn't exist!"
         end
