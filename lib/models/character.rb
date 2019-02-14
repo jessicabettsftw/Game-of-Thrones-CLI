@@ -8,8 +8,9 @@ class Character < ActiveRecord::Base
     puts "House: #{self.house.name}"
     puts "Culture: #{self.culture}"
     puts "Id: #{self.id}"
-    puts "Events attended: "
-    puts self.events.collect {|event| event.name}
+    # puts "Events attended: "
+    # puts self.events.collect {|event| event.name}
+    # binding.pry
   end
 
   def self.list_all
