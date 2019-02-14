@@ -23,6 +23,9 @@ class CLI
         user_input = sub_prompt("Events")
         list_or_find(choice, user_input)
       when "exit"
+        puts "do you want to save (y/n)"
+        save = gets.chomp
+        system("rake db:drop") if save == "n"
         break
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
@@ -76,39 +79,28 @@ class CLI
       when "1" #find character
         character = Character.find_by(name:  name)
         if character
-          puts "Name: #{character.name}"
-          puts "Title: #{character.title}"
-          puts "House: #{character.house.name}"
-          puts "Culture: #{character.culture}"
-          puts "Id: #{character.id}"
+          character.print_messages
         else
           puts "That character doesn't exist!"
         end
       when "2" #find House
         house = House.find_by(name:  name)
         if house
-          puts "#{house.name}"
-          puts "Region: #{house.region.name}"
-          puts "Coat of Arms: #{house.coat_of_arms}"
-          puts "Ancestral Weapon: #{house.ancestral_weapon}"
-          puts "Id: #{house.id}"
+          house.print_messages
         else
           puts "That house doesn't exist!"
         end
       when "3" #find Region
         region = Region.find_by(name:  name)
         if region
-          puts "#{region.name}"
-          puts "Id: #{region.id}"
+          region.print_messages
         else
           puts "That region doesn't exist"
         end
       when "4" #find Event
         event = Event.find_by(name:  name)
         if event
-          puts "#{event.name}"
-          puts "Date: #{event.date}"
-          puts "Id: #{event.id}"
+          event.print_messages
         else
           puts "That event doesn't exist!"
         end

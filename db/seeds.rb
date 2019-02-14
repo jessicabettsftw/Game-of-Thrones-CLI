@@ -24,7 +24,7 @@ def seed_houses
   House.destroy_all
   access_houses.each do |house_hash|
     region_id = Region.find_by(name: house_hash["region"])&.id #in case region doesn't exist
-    if region_id
+    if region_id && house_hash["coatOfArms"]
       House.create(region_id: region_id,
                   name: house_hash["name"],
                   coat_of_arms: house_hash["coatOfArms"],
@@ -44,7 +44,7 @@ def seed_characters
   Character.destroy_all
   access_characters.each do |character_hash|
     house_id = House.find_by(name: character_hash["house"])&.id
-    if house_id
+    if house_id 
       Character.create(house_id: house_id,
                         name: character_hash["name"],
                         title: character_hash["titles"].first,
@@ -56,18 +56,32 @@ end
 seed_characters
 
 def access_events
-  response = RestClient.get("https://api.got.show/api/events/")
-  JSON.parse(response.body)
+  JSON.parse(File.read("./json_seed_info/character_events.json"))
 end
 
 def seed_events
   Event.destroy_all
+  CharacterEvent.destroy_all
   access_events.each do |event_hash|
-    if !event_hash["name"].include?("Unnamed") #get's rid of unnamed events from the wonderfully populated API
-      Event.create(date: event_hash["date"],
-                    name: event_hash["name"])
-    end
+    region_id = Region.find_by(name: event_hash["region"])&.id
+    new_event = Event.create(region_id: region_id,
+                name: event_hash["name"])
+    seed_character_event(event_hash["characters"], new_event.id)
+    #for each character in the array find character_id, create characterEvents
+  end
+end
+
+def seed_character_event(character_names, event_id)
+  character_names.each do |char_name|
+    char_id = Character.find_by(name: char_name)&.id
+    CharacterEvent.create(character_id: char_id, event_id: event_id)
   end
 end
 
 seed_events
+
+
+
+
+
+#############################
