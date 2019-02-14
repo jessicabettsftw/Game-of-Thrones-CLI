@@ -97,10 +97,10 @@ class CLI
      input = gets.chomp.strip
 
      if input.downcase == "list"
-       Character.all.collect{|c| c.name}.sample(50)
+       puts Character.all.collect{|c| c.name}.sample(50)
        return "redo"
      else
-       character = Character.exists?(input)
+       character = Character.find_by(name: input)
        character || "redo"
      end
   end
@@ -112,6 +112,7 @@ class CLI
       character = choose_character
       break unless character == "redo"
      end
-     puts character
+     puts "You are playing as #{character.name}! Here is your information:"
+     character.print_messages
   end
 end
