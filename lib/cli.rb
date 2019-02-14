@@ -83,7 +83,8 @@ class CLI
           puts "House: #{character.house.name}"
           puts "Culture: #{character.culture}"
           puts "Id: #{character.id}"
-          puts "Events attended: #{character.events.to_s}"
+          puts "Events attended: "
+          puts character.events.collect {|event| event.name}
         else
           puts "That character doesn't exist!"
         end
@@ -109,7 +110,8 @@ class CLI
         if event
           puts "Region: #{event.region.name}"
           puts "Id: #{event.id}"
-          puts "Attendees: #{event.characters.to_s}"
+          puts "Attendees: "
+          puts event.characters.collect {|char| char.name}
         else
           puts "That event doesn't exist!"
         end
