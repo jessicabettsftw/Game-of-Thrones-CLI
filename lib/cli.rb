@@ -79,39 +79,28 @@ class CLI
       when "1" #find character
         character = Character.find_by(name:  name)
         if character
-          puts "Title: #{character.title}"
-          puts "House: #{character.house.name}"
-          puts "Culture: #{character.culture}"
-          puts "Id: #{character.id}"
-          puts "Events attended: "
-          puts character.events.collect {|event| event.name}
+          character.print_messages
         else
           puts "That character doesn't exist!"
         end
       when "2" #find House
         house = House.find_by(name:  name)
         if house
-          puts "Region: #{house.region.name}"
-          puts "Coat of Arms: #{house.coat_of_arms}"
-          puts "Ancestral Weapon: #{house.ancestral_weapon}"
-          puts "Id: #{house.id}"
+          house.print_messages
         else
           puts "That house doesn't exist!"
         end
       when "3" #find Region
         region = Region.find_by(name:  name)
         if region
-          puts "Id: #{region.id}"
+          region.print_messages
         else
           puts "That region doesn't exist"
         end
       when "4" #find Event
         event = Event.find_by(name:  name)
         if event
-          puts "Region: #{event.region.name}"
-          puts "Id: #{event.id}"
-          puts "Attendees: "
-          puts event.characters.collect {|char| char.name}
+          event.print_messages
         else
           puts "That event doesn't exist!"
         end
