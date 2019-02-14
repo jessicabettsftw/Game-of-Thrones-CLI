@@ -93,19 +93,25 @@ class CLI
   def choose_character
     puts "Hi User, please choose a character to play as \n
     type their name to choose them, or type 'list' to see 5o random characters
-     to chose from."
+    to chose from."
      input = gets.chomp.strip
 
      if input.downcase == "list"
        Character.all.collect{|c| c.name}.sample(50)
        return "redo"
      else
-       Character.exists?(input)
+       character = Character.exists?(input)
+       character || "redo"
      end
   end
 
   def main
     puts "Welcome to the GOT CLI"
-    while choose_character == "redo" do end
+    character = nil
+    loop do
+      character = choose_character
+      break unless character == "redo"
+     end
+     puts character
   end
 end
