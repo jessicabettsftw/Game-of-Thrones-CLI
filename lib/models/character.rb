@@ -10,7 +10,6 @@ class Character < ActiveRecord::Base
     puts "Id: #{self.id}"
     puts "Events attended: "
     puts self.events.collect {|event| event.name}
-
   end
 
   def self.list_all

@@ -90,50 +90,57 @@ end
 
 class CLI
 
-  def choose_character
-    puts "type a characters name, or type 'list' to see 50 random available characters."
-     input = gets.chomp.strip
-
-     if input.downcase == "list"
-       puts Character.all.collect{|c| c.name}.sample(50)
-       return "redo"
-     else
-       character = Character.find_by(name: input)
-       character || "redo"
-     end
-  end
-
-  def welcome
-    puts "Welcome to the GOT CLI"
-    puts "Hi User, please choose a character to play as"
-    character = nil
-    loop do
-      character = choose_character
-      break unless character == "redo"
-     end
-     puts "You are playing as #{character.name}! Here is your information:"
-     character.print_messages
+  def choose_character #returns nil to redo, a character object, or exit
+    input = character_prompt
+    case input
+    when "list"
+      puts Character.all.collect{|c| c.name}.sample(50) #returns nil
+    when "exit"
+      "exit"
+    else
+     character = Character.find_by(name: input) #returns nil if character doesn't exist
+     # binding.pry
+     # puts input
+     puts "That's not a character" unless character
      character
+    end
   end
 
   def main
-    player_character = welcome
 
-    loop do
+    welcome
+    player_character = nil
+    keep_playing = true
+    while !player_character
+      # binding.pry
+      player_character = choose_character
+    end
+
+    if player_character == "exit"
+      keep_playing = false
+    else
+      puts "You are playing as #{player_character.name}! Here is your information:"
+      player_character.print_messages
+    end
+
+    while keep_playing do
       choice = prompt_user
       case choice
       when "help"
         help
       when "exit"
-        break
+        keep_playing = false
       when "events"
         Event.list_all
       when "attend event"
         Event.attend(player_character)
+      when "about me"
+        player_character.print_messages
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
     end
+
   end
 
   private #main submethods
@@ -142,10 +149,21 @@ class CLI
     puts "- exit"
     puts "- events: lists all events in Westeros"
     puts "- attend event: go to an event"
+    puts "- about me: tells you about yourself"
   end
 
   def prompt_user
     puts "What would you like to do next (type 'help' for a list of commands)"
     gets.chomp.strip
+  end
+
+  def character_prompt
+    puts "Type a characters name, or type 'list' to see 50 random available characters.(or exit to exit)"
+    gets.chomp.strip
+  end
+
+  def welcome
+    puts "Welcome to the GOT CLI"
+    print "Hi User, please choose a character to play as. " #is print so that first prompt is in line
   end
 end
