@@ -4,28 +4,6 @@
 
 class CLI
 
-  def choose_character #returns nil to redo, a character object, or exit
-    input = character_prompt
-    case input
-    when "list"
-      puts Character.all.select{|c| c.status == "alive"}.collect{|c| c.name}.sample(50) #returns nil
-    when "exit"
-      "exit"
-    else
-     character = Character.find_by(name: input) #returns nil if character doesn't exist
-     # binding.pry
-     # puts input
-     if !character
-       puts "That's not a character"
-       return nil
-     elsif character.status == "dead"
-       puts "That character is dead. You cannot play a dead character!"
-       return nil
-     end
-     character
-    end
-  end
-
   def main
 
     welcome
@@ -61,7 +39,7 @@ class CLI
       when "about characters"
         Character.about_a_character
       when "facts"
-        Character.most_murders
+        # Character.most_murders
         Character.most_powerful
         Event.most_popular
       else
@@ -73,6 +51,28 @@ class CLI
   end
 
   private #main submethods
+
+  def choose_character #returns nil to redo, a character object, or exit
+    input = character_prompt
+    case input
+    when "list"
+      puts Character.all.select{|c| c.status == "alive"}.collect{|c| c.name}.sample(50) #returns nil
+    when "exit"
+      "exit"
+    else
+     character = Character.find_by(name: input) #returns nil if character doesn't exist
+     # binding.pry
+     # puts input
+     if !character
+       puts "That's not a character"
+       return nil
+     elsif character.status == "dead"
+       puts "That character is dead. You cannot play a dead character!"
+       return nil
+     end
+     character
+    end
+  end
 
   def help
     puts "- exit"

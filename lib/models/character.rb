@@ -20,11 +20,11 @@ class Character < ActiveRecord::Base
     # binding.pry
   end
 
-  def self.most_murders
-    killer = self.all.max_by{|character| character.kills.count}
-    victim_names = killer.victims.collect {|v| v.name}
-    puts "The character with the most kills is #{killer.name}. They've killed these people: #{victim_names}"
-  end
+  # def self.most_murders
+  #   killer = self.all.max_by{|character| character.kills.count}
+  #   victim_names = killer.victims.collect {|v| v.name}
+  #   puts "The character with the most kills is #{killer.name}. They've killed these people: #{victim_names}"
+  # end
 
   def self.most_powerful
     m_p = self.all.max_by{|character| character.title&.length || 0}#in case title is nil
@@ -61,18 +61,10 @@ class Character < ActiveRecord::Base
         puts "#{victim.name} is already dead! The dead are already dead."
         return true #keep playing
       end
-      if !victim.title
+      if (victim.title || 0) <= (character.title || 0)
         self.win(character,victim)
       else
-        if !character.title
-          self.lose(character,victim)
-        else
-          if character.title.length > victim.title.length
-            self.win(character,victim)
-          else
-            self.lose(character,victim)
-          end
-        end
+        self.lose(character,victim)
       end
     else
       puts "That character doesn't exist!"
