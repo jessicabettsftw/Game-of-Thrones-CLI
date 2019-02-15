@@ -3,6 +3,18 @@ class Event < ActiveRecord::Base
   has_many :characters, through: :character_events
   belongs_to :region
 
+  def print_messages
+    puts "Region: #{self.region.name}"
+    puts "Id: #{self.id}"
+    puts "Attendees: "
+    puts self.characters.collect {|char| char.name}
+  end
+
+  def self.most_popular
+    m_p = self.all.max_by{|event| event.characters.count}
+    puts "#{m_p.name} is the most popular event with #{m_p.characters.count} attendees!"
+  end
+
   def self.attend(character)
     print "Name an event to go to: "
     input = gets.chomp.strip
@@ -15,13 +27,6 @@ class Event < ActiveRecord::Base
     else
       puts "That event doesn't exist!!!"
     end
-  end
-
-  def print_messages
-    puts "Region: #{self.region.name}"
-    puts "Id: #{self.id}"
-    puts "Attendees: "
-    puts self.characters.collect {|char| char.name}
   end
 
   def self.list_all

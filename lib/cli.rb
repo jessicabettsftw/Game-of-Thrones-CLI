@@ -4,28 +4,6 @@
 
 class CLI
 
-  def choose_character #returns nil to redo, a character object, or exit
-    input = character_prompt
-    case input
-    when "list"
-      puts Character.all.select{|c| c.status == "alive"}.collect{|c| c.name}.sample(50) #returns nil
-    when "exit"
-      "exit"
-    else
-     character = Character.find_by(name: input) #returns nil if character doesn't exist
-     # binding.pry
-     # puts input
-     if !character
-       puts "That's not a character"
-       return nil
-     elsif character.status == "dead"
-       puts "That character is dead. You cannot play a dead character!"
-       return nil
-     end
-     character
-    end
-  end
-
   def main
 
     welcome
@@ -60,6 +38,10 @@ class CLI
         keep_playing = Character.kill(player_character)
       when "about characters"
         Character.about_a_character
+      when "facts"
+        # Character.most_murders
+        Character.most_powerful
+        Event.most_popular
       when "resurrect"
         Murder.ressurect_character
       else
@@ -72,6 +54,28 @@ class CLI
 
   private #main submethods
 
+  def choose_character #returns nil to redo, a character object, or exit
+    input = character_prompt
+    case input
+    when "list"
+      puts Character.all.select{|c| c.status == "alive"}.collect{|c| c.name}.sample(50) #returns nil
+    when "exit"
+      "exit"
+    else
+     character = Character.find_by(name: input) #returns nil if character doesn't exist
+     # binding.pry
+     # puts input
+     if !character
+       puts "That's not a character"
+       return nil
+     elsif character.status == "dead"
+       puts "That character is dead. You cannot play a dead character!"
+       return nil
+     end
+     character
+    end
+  end
+
   def help
     puts "- exit"
     puts "- events: lists all events in Westeros"
@@ -79,6 +83,7 @@ class CLI
     puts "- about me: tells you about yourself"
     puts "- kill: try to kill somone"
     puts "- about characters: learn about other characters"
+    puts "- facts: learn about the biggest and best things in this world"
     puts "- resurrect: attempt to resurrect a character"
   end
 
