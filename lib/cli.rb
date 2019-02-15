@@ -60,6 +60,9 @@ class CLI
         keep_playing = Character.kill(player_character)
       when "about characters"
         Character.about_a_character
+      when "facts"
+        Character.most_murders
+        Character.most_powerful
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
@@ -77,6 +80,7 @@ class CLI
     puts "- about me: tells you about yourself"
     puts "- kill: try to kill somone"
     puts "- about characters: learn about other characters"
+    puts "- facts: learn about the biggest and best things in this world"
   end
 
   def prompt_user

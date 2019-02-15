@@ -20,6 +20,19 @@ class Character < ActiveRecord::Base
     # binding.pry
   end
 
+  #######Class Methods#######
+
+  def self.most_murders
+    killer = self.all.max_by{|character| character.kills.count}
+    victim_names = killer.victims.collect {|v| v.name}
+    puts "The character with the most kills is #{killer.name}. They've killed these people: #{victim_names}"
+  end
+
+  def self.most_powerful
+    m_p = self.all.max_by{|character| character.title&.length || 0}#in case title is nil
+    puts "The most powerful character is #{m_p.name}. They cannot be killed!"
+  end
+
   def self.list_all
     puts
     self.all.each_with_index do |character, index|
