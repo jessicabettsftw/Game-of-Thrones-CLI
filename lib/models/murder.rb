@@ -7,11 +7,11 @@ class Murder < ActiveRecord::Base
     character_name = gets.chomp.strip
     character = Character.find_by(name: character_name)
     if character
-      death = Murder.find_by(victim_id: character.id)
-      if death
+      if character.status == "dead"
         random_num = rand(1..10)
         if random_num > 6
-          death.destroy
+          death = Murder.find_by(victim_id: character.id)
+          death&.destroy
           character.update(status: "alive")
           puts "The Lord of Light has granted life to #{character.name}. They have been resurrected!"
         else
