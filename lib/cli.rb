@@ -42,6 +42,8 @@ class CLI
         # Character.most_murders
         Character.most_powerful
         Event.most_popular
+      when "resurrect"
+        Murder.ressurect_character
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
@@ -82,6 +84,7 @@ class CLI
     puts "- kill: try to kill somone"
     puts "- about characters: learn about other characters"
     puts "- facts: learn about the biggest and best things in this world"
+    puts "- resurrect: attempt to resurrect a character"
   end
 
   def prompt_user
