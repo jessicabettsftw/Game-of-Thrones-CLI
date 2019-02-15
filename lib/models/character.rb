@@ -20,8 +20,6 @@ class Character < ActiveRecord::Base
     # binding.pry
   end
 
-  #######Class Methods#######
-
   def self.most_murders
     killer = self.all.max_by{|character| character.kills.count}
     victim_names = killer.victims.collect {|v| v.name}

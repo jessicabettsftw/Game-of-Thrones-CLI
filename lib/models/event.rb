@@ -10,6 +10,11 @@ class Event < ActiveRecord::Base
     puts self.characters.collect {|char| char.name}
   end
 
+  def self.most_popular
+    m_p = self.all.max_by{|event| event.characters.count}
+    puts "#{m_p.name} is the most popular event with #{m_p.characters.count} attendees!"
+  end
+
   def self.attend(character)
     print "Name an event to go to: "
     input = gets.chomp.strip

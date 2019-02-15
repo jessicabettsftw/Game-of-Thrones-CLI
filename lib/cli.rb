@@ -63,6 +63,7 @@ class CLI
       when "facts"
         Character.most_murders
         Character.most_powerful
+        Event.most_popular
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
