@@ -40,6 +40,10 @@ class Character < ActiveRecord::Base
     puts "Type a characters name to engage them in a battle to the death!"
     victim_name = gets.chomp.strip
     victim = Character.find_by(name: victim_name)
+    if victim.id = character.id
+      puts "You can't kill yourself"
+      return true #keep playing
+    end
     if victim
       if !victim.title
         self.win(character,victim)
@@ -56,18 +60,20 @@ class Character < ActiveRecord::Base
       end
     else
       puts "That character doesn't exist!"
-      return false #keep playing
+      return true #keep playing
     end
   end
 
   def self.lose(character, victim)
     Murder.create(victim_id: character.id, murderer_id: victim.id)
+    Character.find_by(id: character.id).status = "dead"
     puts "FOOL! YOU HAVE BEEN KILLED BY #{victim.name}!!! Their strength was too much, and you were too weak..."
     return false #keep playing is false
   end
 
   def self.win(character, victim)
     Murder.create(victim_id: victim.id, murderer_id: character.id)
+    Character.find_by(id: victim.id).status = "dead"
     puts "You killed #{victim.name}. I hope you're happy :("
     return true #keep playing
   end
