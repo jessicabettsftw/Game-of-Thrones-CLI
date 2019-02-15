@@ -61,7 +61,7 @@ class Character < ActiveRecord::Base
         puts "#{victim.name} is already dead! The dead are already dead."
         return true #keep playing
       end
-      if (victim.title || 0) <= (character.title || 0)
+      if (victim.title&.length || 0) <= (character.title&.length || 0)
         self.win(character,victim)
       else
         self.lose(character,victim)

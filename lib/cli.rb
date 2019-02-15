@@ -44,6 +44,8 @@ class CLI
         Event.most_popular
       when "resurrect"
         Murder.ressurect_character
+      when "list all"
+        Character.list_all
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
@@ -77,14 +79,15 @@ class CLI
   end
 
   def help
-    puts "- exit"
-    puts "- events: lists all events in Westeros"
+    puts "- events: lists all eventxs in Westeros"
     puts "- attend event: go to an event"
-    puts "- about me: tells you about yourself"
+    puts "- resurrect: attempt to resurrect a character"
     puts "- kill: try to kill somone"
+    puts "- about me: tells you about yourself"
     puts "- about characters: learn about other characters"
     puts "- facts: learn about the biggest and best things in this world"
-    puts "- resurrect: attempt to resurrect a character"
+    puts "- list all: lists all (1000+) characters"
+    puts "- exit"
   end
 
   def prompt_user
