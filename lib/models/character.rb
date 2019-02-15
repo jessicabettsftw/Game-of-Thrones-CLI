@@ -49,7 +49,7 @@ class Character < ActiveRecord::Base
   end
 
   def self.kill(character)
-    puts "Type a characters name to engage them in a battle to the death!"
+    print "Type a characters name to engage them in a battle to the death!: "
     victim_name = gets.chomp.strip
     victim = Character.find_by(name: victim_name)
     if victim
@@ -73,7 +73,7 @@ class Character < ActiveRecord::Base
   end
 
   def self.about_a_character
-    puts "Who would you like to find out about?"
+    print "Who would you like to find out about?: "
     input = gets.chomp.strip
     Character.exists?(input)
   end
