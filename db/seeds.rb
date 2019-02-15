@@ -47,11 +47,13 @@ def seed_characters
   Character.destroy_all
   access_characters.each do |character_hash|
     house_id = House.find_by(name: character_hash["house"])&.id
+    status = character_hash["dateOfDeath"] ? "dead" : "alive"
     if house_id
       Character.create(house_id: house_id,
                         name: character_hash["name"],
                         title: character_hash["titles"].first,
-                        culture: character_hash["culture"])
+                        culture: character_hash["culture"],
+                        status: status)
     end
   end
 end
