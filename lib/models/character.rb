@@ -41,15 +41,15 @@ class Character < ActiveRecord::Base
     puts "Type a characters name to engage them in a battle to the death!"
     victim_name = gets.chomp.strip
     victim = Character.find_by(name: victim_name)
-    if victim.id == character.id
-      puts "You can't kill yourself"
-      return true #keep playing
-    end
-    if victim.status  == "dead"
-      puts "#{victim.name} is already dead! The dead are already dead."
-      return true #keep playing
-    end
     if victim
+      if victim.id == character.id
+        puts "You can't kill yourself"
+        return true #keep playing
+      end
+      if victim.status  == "dead"
+        puts "#{victim.name} is already dead! The dead are already dead."
+        return true #keep playing
+      end
       if !victim.title
         self.win(character,victim)
       else

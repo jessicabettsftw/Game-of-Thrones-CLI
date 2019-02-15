@@ -143,6 +143,7 @@ class CLI
       end
     end
 
+    puts "Game Over"
   end
 
   private #main submethods
