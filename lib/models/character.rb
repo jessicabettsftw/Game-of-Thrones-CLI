@@ -15,8 +15,8 @@ class Character < ActiveRecord::Base
     puts "Culture: #{self.culture}"
     puts "Status: #{self.status}"
     puts "Id: #{self.id}"
-    # puts "Events attended: "
-    # puts self.events.collect {|event| event.name}
+    puts "Events attended: "
+    puts self.events.collect {|event| event.name}
     # binding.pry
   end
 
@@ -69,16 +69,22 @@ class Character < ActiveRecord::Base
     end
   end
 
+  def self.about_a_character
+    puts "Who would you like to find out about?"
+    input = gets.chomp.strip
+    Character.exists?(input)
+  end
+
   def self.lose(character, victim)
     Murder.create(victim_id: character.id, murderer_id: victim.id)
-    Character.find_by(id: character.id).status = "dead"
+    Character.find_by(id: character.id).update(status: "dead")
     puts "FOOL! YOU HAVE BEEN KILLED BY #{victim.name}!!! Their strength was too much, and you were too weak..."
     return false #keep playing is false
   end
 
   def self.win(character, victim)
     Murder.create(victim_id: victim.id, murderer_id: character.id)
-    Character.find_by(id: victim.id).status = "dead"
+    Character.find_by(id: victim.id).update(status: "dead")
     puts "You killed #{victim.name}. I hope you're happy :("
     return true #keep playing
   end

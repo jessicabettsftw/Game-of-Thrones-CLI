@@ -144,6 +144,8 @@ class CLI
         player_character.print_messages
       when "kill"
         keep_playing = Character.kill(player_character)
+      when "about characters"
+        Character.about_a_character
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
@@ -160,6 +162,7 @@ class CLI
     puts "- attend event: go to an event"
     puts "- about me: tells you about yourself"
     puts "- kill: try to kill somone"
+    puts "- about characters: learn about other characters"
   end
 
   def prompt_user
