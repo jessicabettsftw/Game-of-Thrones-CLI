@@ -15,8 +15,8 @@ class Character < ActiveRecord::Base
     puts "Culture: #{self.culture}"
     puts "Status: #{self.status}"
     puts "Id: #{self.id}"
-    puts "Events attended: "
-    puts self.events.collect {|event| event.name}
+    # puts "Events attended: "
+    # puts self.events.collect {|event| event.name}
     # binding.pry
   end
 
