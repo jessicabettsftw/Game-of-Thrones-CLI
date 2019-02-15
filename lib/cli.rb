@@ -136,6 +136,8 @@ class CLI
         Event.attend(player_character)
       when "about me"
         player_character.print_messages
+      when "kill"
+        keep_playing = Character.kill(player_character)
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
@@ -150,6 +152,7 @@ class CLI
     puts "- events: lists all events in Westeros"
     puts "- attend event: go to an event"
     puts "- about me: tells you about yourself"
+    puts "- kill: try to kill somone"
   end
 
   def prompt_user
@@ -166,4 +169,5 @@ class CLI
     puts "Welcome to the GOT CLI"
     print "Hi User, please choose a character to play as. " #is print so that first prompt is in line
   end
+
 end

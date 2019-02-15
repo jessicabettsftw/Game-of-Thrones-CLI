@@ -36,4 +36,40 @@ class Character < ActiveRecord::Base
     end
   end
 
+  def self.kill(character)
+    puts "Type a characters name to engage them in a battle to the death!"
+    victim_name = gets.chomp.strip
+    victim = Character.find_by(name: victim_name)
+    if victim
+      if !victim.title
+        self.win
+      else
+        if !character.title
+          self.lose
+        else
+          if character.title.length > victim.title.length
+            self.win
+          else
+            self.lose
+          end
+        end
+      end
+    else
+      puts "That character doesn't exist!"
+      return false #keep playing
+    end
+  end
+
+  def self.lose
+    Murder.create(victim_id: character.id, murderer_id: victim.id)
+    puts "FOOL! YOU HAVE BEEN KILLED BY #{victim.name}!!! Their strength was too much, and you were too weak..."
+    return false #keep playing is false
+  end
+
+  def self.win
+    Murder.create(victim_id: victim.id, murderer_id: character.id)
+    puts "You killed #{victim.name}. I hope you're happy :("
+    return true #keep playing
+  end
+
 end
