@@ -18,7 +18,7 @@ class Murder < ActiveRecord::Base
           puts "The Lord of Light has turned a blind eye to your request. #{character.name} is still very much dead!"
         end
       else
-        puts "#{character.name} is not dead yet!"
+        puts "#{character.name} is not dead!"
       end
     else
       puts "That character does not exist!"
