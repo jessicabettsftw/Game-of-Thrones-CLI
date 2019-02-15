@@ -4,6 +4,12 @@
 
 class CLI
 
+  @player_character_id = nil
+
+  def player
+    Character.find_by(id: @player_character_id)
+  end
+
   def main
 
     welcome
@@ -17,8 +23,9 @@ class CLI
     if player_character == "exit"
       keep_playing = false
     else
-      puts "You are playing as #{player_character.name}! Here is your information:"
-      player_character.print_messages
+      @player_character_id = player_character&.id
+      puts "You are playing as #{self.player.name}! Here is your information:"
+      self.player.print_messages
     end
 
     while keep_playing do
@@ -31,11 +38,11 @@ class CLI
       when "events"
         Event.list_all
       when "attend event"
-        Event.attend(player_character)
+        Event.attend(self.player)
       when "about me"
-        player_character.print_messages
+        self.player.print_messages
       when "kill"
-        keep_playing = Character.kill(player_character)
+        keep_playing = Character.kill(self.player)
       when "about characters"
         Character.about_a_character
       when "facts"
@@ -49,8 +56,8 @@ class CLI
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
+      puts "\n\n"
     end
-
     puts "Game Over"
   end
 
