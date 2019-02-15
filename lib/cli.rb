@@ -46,7 +46,7 @@ class CLI
       when "about characters"
         Character.about_a_character
       when "facts"
-        # Character.most_murders
+        Character.most_murders
         Character.most_powerful
         Event.most_popular
       when "resurrect"
