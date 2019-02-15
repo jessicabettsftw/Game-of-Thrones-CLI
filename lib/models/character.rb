@@ -42,15 +42,15 @@ class Character < ActiveRecord::Base
     victim = Character.find_by(name: victim_name)
     if victim
       if !victim.title
-        self.win
+        self.win(character,victim)
       else
         if !character.title
-          self.lose
+          self.lose(character,victim)
         else
           if character.title.length > victim.title.length
-            self.win
+            self.win(character,victim)
           else
-            self.lose
+            self.lose(character,victim)
           end
         end
       end
@@ -60,13 +60,13 @@ class Character < ActiveRecord::Base
     end
   end
 
-  def self.lose
+  def self.lose(character, victim)
     Murder.create(victim_id: character.id, murderer_id: victim.id)
     puts "FOOL! YOU HAVE BEEN KILLED BY #{victim.name}!!! Their strength was too much, and you were too weak..."
     return false #keep playing is false
   end
 
-  def self.win
+  def self.win(character, victim)
     Murder.create(victim_id: victim.id, murderer_id: character.id)
     puts "You killed #{victim.name}. I hope you're happy :("
     return true #keep playing
