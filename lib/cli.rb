@@ -79,7 +79,7 @@ class CLI
     puts "- about me: tells you about yourself"
     puts "- kill: try to kill somone"
     puts "- about characters: learn about other characters"
-    puts "- resurrect: attempt to ressurect a character"
+    puts "- resurrect: attempt to resurrect a character"
   end
 
   def prompt_user
