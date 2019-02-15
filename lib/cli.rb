@@ -60,6 +60,8 @@ class CLI
         keep_playing = Character.kill(player_character)
       when "about characters"
         Character.about_a_character
+      when "resurrect"
+        Murder.ressurect_character
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
@@ -77,6 +79,7 @@ class CLI
     puts "- about me: tells you about yourself"
     puts "- kill: try to kill somone"
     puts "- about characters: learn about other characters"
+    puts "- resurrect: attempt to resurrect a character"
   end
 
   def prompt_user
