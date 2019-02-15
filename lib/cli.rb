@@ -94,14 +94,20 @@ class CLI
     input = character_prompt
     case input
     when "list"
-      puts Character.all.collect{|c| c.name}.sample(50) #returns nil
+      puts Character.all.select{|c| c.status == "alive"}.collect{|c| c.name}.sample(50) #returns nil
     when "exit"
       "exit"
     else
      character = Character.find_by(name: input) #returns nil if character doesn't exist
      # binding.pry
      # puts input
-     puts "That's not a character" unless character
+     if !character
+       puts "That's not a character"
+       return nil
+     elsif character.status == "dead"
+       puts "That character is dead. You cannot play a dead character!"
+       return nil
+     end
      character
     end
   end
