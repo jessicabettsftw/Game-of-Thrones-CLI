@@ -13,6 +13,7 @@ class Character < ActiveRecord::Base
     puts "Title: #{self.title}"
     puts "House: #{self.house.name}"
     puts "Culture: #{self.culture}"
+    puts "Status: #{self.status}"
     puts "Id: #{self.id}"
     # puts "Events attended: "
     # puts self.events.collect {|event| event.name}
@@ -42,6 +43,10 @@ class Character < ActiveRecord::Base
     victim = Character.find_by(name: victim_name)
     if victim.id = character.id
       puts "You can't kill yourself"
+      return true #keep playing
+    end
+    if victim.status  == "dead"
+      puts "#{victim.name} is already dead! The dead are already dead."
       return true #keep playing
     end
     if victim
