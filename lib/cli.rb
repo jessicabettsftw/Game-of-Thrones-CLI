@@ -61,7 +61,7 @@ class CLI
       when "about characters"
         Character.about_a_character
       when "resurrect"
-        Murder.ressurect_character(player_character)
+        Murder.ressurect_character
       else
         puts "Invalid choice! SHAME!!! *rings bell*"
       end
