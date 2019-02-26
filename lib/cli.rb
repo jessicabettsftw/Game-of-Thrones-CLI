@@ -86,10 +86,10 @@ class CLI
   end
 
   def help
-    puts "- events: lists all eventxs in Westeros"
+    puts "- events: lists all events in Westeros"
     puts "- attend event: go to an event"
     puts "- resurrect: attempt to resurrect a character"
-    puts "- kill: try to kill somone"
+    puts "- kill: try to kill someone"
     puts "- about me: tells you about yourself"
     puts "- about characters: learn about other characters"
     puts "- facts: learn about the biggest and best things in this world"
